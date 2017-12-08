@@ -31,7 +31,7 @@
 
 - name: Start Node
   become: true
-  shell: java -jar iri-1.4.1.2.jar -c iri.ini > server.out
+  shell: nohup java -jar iri-1.4.1.2.jar -c iri.ini > server.out &
   args:
     chdir: /opt/iri/target
   async: 30
@@ -41,7 +41,7 @@
   shell: npm i -g iota-pm
 
 - name: Run iota-pm GUI
-  shell: iota-pm -i http://{{ inventory_hostname }}:14265 -p {{ inventory_hostname }}:8888
+  shell: nohup iota-pm -i http://{{ inventory_hostname }}:14265 -p {{ inventory_hostname }}:8888 &
   args:
     chdir: /opt
   async: 30
