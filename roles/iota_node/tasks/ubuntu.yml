@@ -1,0 +1,22 @@
+- name: Download nodejs repo
+  shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+- name: install necessary packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - git
+    - maven
+    - default-jre
+    - default-jdk
+    - nodejs
+
+- name: checkout iota node from git
+  git:
+    repo: https://github.com/iotaledger/iri.git
+    dest: /opt/iri
+
+- name: "Configure Node"
+  include: "node.yml"

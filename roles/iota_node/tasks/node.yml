@@ -1,0 +1,48 @@
+---
+- name: compile iota node
+  shell: mvn clean compile
+  args:
+    chdir: /opt/iri
+
+- name: package node
+  shell: mvn package
+  args:
+    chdir: /opt/iri
+
+- name: create config file
+  blockinfile:
+    dest: /opt/iri/target/iri.ini
+    create: yes
+    owner: root
+    group: root
+    mode: 0600
+    marker: "### {mark} ANSIBLE MANAGED BLOCK ###"
+    block: |
+      [IRI]
+      PORT = 14265
+      UDP_RECEIVER_PORT = 14600
+      TCP_RECEIVER_PORT = 15600
+      NEIGHBORS = udp://54.193.75.212:14600 udp://13.57.11.250:14600 udp://76.167.105.111:14600
+      IXI_DIR = ixi
+      HEADLESS = true
+      DEBUG = true
+      DB_PATH = mainnetdb
+      API_HOST = {{ inventory_hostname }}
+
+- name: Start Node
+  become: true
+  shell: java -jar iri-1.4.1.2.jar -c iri.ini > server.out
+  args:
+    chdir: /opt/iri/target
+  async: 30
+  poll: 0
+
+- name: Install iota-pm GUI
+  shell: npm i -g iota-pm
+
+- name: Run iota-pm GUI
+  shell: iota-pm -i http://{{ inventory_hostname }}:14265 -p {{ inventory_hostname }}:8888
+  args:
+    chdir: /opt
+  async: 30
+  poll: 0

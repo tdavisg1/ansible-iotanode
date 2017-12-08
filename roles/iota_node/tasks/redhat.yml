@@ -1,0 +1,34 @@
+- name: "Install Java 8"
+  include: "java.yml"
+
+- name: Download Maven repo
+  get_url:
+    url: http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo
+    dest: /etc/yum.repos.d/epel-apache-maven.repo
+
+- name: Download nodejs repo
+  shell: curl -sL https://rpm.nodesource.com/setup_6.x | sudo -E bash -
+
+- name: set release ver
+  become: true
+  shell: sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+
+- name: install necessary packages
+  yum:
+    name: "{{ item }}"
+    state: latest
+    update_cache: yes
+  with_items:
+    - git
+    - apache-maven
+    - gcc-c++
+    - make
+    - nodejs
+
+- name: checkout iota node from git
+  git:
+    repo: https://github.com/iotaledger/iri.git
+    dest: /opt/iri
+
+- name: "Configure Node"
+  include: "node.yml"

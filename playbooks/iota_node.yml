@@ -1,0 +1,6 @@
+---
+- hosts: iota-node
+  become: true
+  become_method: sudo
+  roles:
+    - iota_node
