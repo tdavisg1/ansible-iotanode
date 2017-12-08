@@ -16,6 +16,11 @@ ansible-playbook -i inventory playbooks/iota_node.yml --user username -kK
 This configuration is pre-configured with neighbors currently running. Feel free to PM me your node IP and I will add it to the list.
 
 
+
+
+
+
+#####Generated in Ansible#####################################################
 BTC: 1FfBp3f9q8zTR3MfNgJ2WmoEyWue1XaQRy
 
 ETH: 0xf213043606e2eb9610b49298ec28428635814c06
