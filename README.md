@@ -12,3 +12,5 @@ ansible-playbook -i inventory playbooks/iota_node.yml --user username --key-file
 Username / Password
 ansible-playbook -i inventory playbooks/iota_node.yml --user username -kK
 
+
+This configuration is pre-configured with neighbors currently running. Feel free to PM me your node IP and I will add it to the list.
