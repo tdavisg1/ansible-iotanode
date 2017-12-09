@@ -22,7 +22,7 @@ This configuration is pre-configured with neighbors currently running. Feel free
 
 #####Generated in Ansible#####################################################
 
-BTC: 1FfBp3f9q8zTR3MfNgJ2WmoEyWue1XaQRy
-ETH: 0xf213043606e2eb9610b49298ec28428635814c06
-LTC: LfzJWAANaCXrC3sbV9Z53seB2VCUDvQypG
+BTC: 1FfBp3f9q8zTR3MfNgJ2WmoEyWue1XaQRy                   
+ETH: 0xf213043606e2eb9610b49298ec28428635814c06                
+LTC: LfzJWAANaCXrC3sbV9Z53seB2VCUDvQypG                       
 IOTA: BHLDWLPMPWXFNZSFQZULEHHURSRPZVUIGTES9JUMCUFNOXGK99MAGMUNXT9ZSJZZCSLNKPECHXJ9AMVAXRUAASQSPD
